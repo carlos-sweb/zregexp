@@ -1,0 +1,81 @@
+# Zig build artifacts
+zig-out/
+zig-cache/
+.zig-cache/
+
+# Build directories
+build/
+out/
+dist/
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Test artifacts
+test-results/
+coverage/
+*.profdata
+*.profraw
+
+# Benchmark results
+benchmarks/results/
+*.bench
+
+# Fuzzing
+fuzz-corpus/
+fuzz-crashes/
+afl-out/
+
+# Documentation build
+docs/build/
+docs/_build/
+site/
+
+# Generated files
+src/unicode/tables_generated.zig
+
+# Dependencies (if using package manager)
+.gyro/
+deps.zig
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# OS specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Compilation database
+compile_commands.json
+
+# Core dumps
+core
+core.*
+vgcore.*
+
+# Profiling
+*.svg
+flamegraph.svg
+perf.data
+perf.data.old
+
+# Local configuration
+.env
+.env.local
+config.local.zig
+
+# Package artifacts
+*.tar.gz
+*.zip
+*.tgz
+
+# Lock files
+zig.lock
