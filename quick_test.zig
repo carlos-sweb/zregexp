@@ -2,7 +2,7 @@ const std = @import("std");
 const regex = @import("src/regex.zig");
 
 pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    var gpa: std.heap.DebugAllocator(.{}) = .init;
     defer _ = gpa.deinit();
     const allocator = gpa.allocator();
 
@@ -18,7 +18,7 @@ pub fn main() !void {
         if (result) |r| {
             defer r.deinit();
             const match = "aaaa"[r.start..r.end];
-            std.debug.print("  ✅ Matched: '{s}' at [{}, {})\n", .{match, r.start, r.end});
+            std.debug.print("  ✅ Matched: '{s}' at [{}, {})\n", .{ match, r.start, r.end });
             if (r.end - r.start == 2) {
                 std.debug.print("  ✅ PASS - matched minimum (2)\n", .{});
             } else {
@@ -39,7 +39,7 @@ pub fn main() !void {
         if (result) |r| {
             defer r.deinit();
             const match = "aaaaaa"[r.start..r.end];
-            std.debug.print("  ✅ Matched: '{s}' at [{}, {})\n", .{match, r.start, r.end});
+            std.debug.print("  ✅ Matched: '{s}' at [{}, {})\n", .{ match, r.start, r.end });
             if (r.end - r.start == 2) {
                 std.debug.print("  ✅ PASS - matched minimum (2)\n", .{});
             } else {
@@ -60,7 +60,7 @@ pub fn main() !void {
         if (result) |r| {
             defer r.deinit();
             const match = "aaaaa"[r.start..r.end];
-            std.debug.print("  ✅ Matched: '{s}' at [{}, {})\n", .{match, r.start, r.end});
+            std.debug.print("  ✅ Matched: '{s}' at [{}, {})\n", .{ match, r.start, r.end });
             if (r.end - r.start == 3) {
                 std.debug.print("  ✅ PASS - matched exactly 3\n", .{});
             } else {

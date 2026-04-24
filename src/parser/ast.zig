@@ -72,7 +72,7 @@ pub const Node = struct {
     repeat_max: u32 = 0,
 
     /// Child nodes (for complex nodes)
-    children: std.ArrayListUnmanaged(*Node) = .{},
+    children: std.ArrayListUnmanaged(*Node) = .empty,
 
     /// Group index (for capture groups and backreferences)
     group_index: u8 = 0,

@@ -3,7 +3,7 @@ const Regex = @import("src/regex.zig").Regex;
 const compiler = @import("src/codegen/compiler.zig");
 
 pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    var gpa: std.heap.DebugAllocator(.{}) = .init;
     defer _ = gpa.deinit();
     const allocator = gpa.allocator();
 
@@ -28,7 +28,7 @@ pub fn main() !void {
 
     const match = try re.find("aaa");
     if (match) |m| {
-        std.debug.print("Match: start={}, end={}\n", .{m.start, m.end});
+        std.debug.print("Match: start={}, end={}\n", .{ m.start, m.end });
     } else {
         std.debug.print("No match\n", .{});
     }

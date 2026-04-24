@@ -14,7 +14,7 @@ const Allocator = std.mem.Allocator;
 // =============================================================================
 
 /// Global allocator for FFI operations
-var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+var gpa: std.heap.DebugAllocator(.{}) = .init;
 const allocator = gpa.allocator();
 
 /// Thread-local error state
@@ -220,7 +220,7 @@ export fn zregexp_find_all(re: *ZRegex, input: [*:0]const u8) ?*ZMatchList {
     };
 
     // Convert to managed ArrayList
-    var match_list = std.ArrayList(ZMatch){};
+    var match_list: std.ArrayList(ZMatch) = .empty;
 
     // Duplicate input once for all matches
     const input_dup = allocator.dupe(u8, input_slice) catch {
@@ -384,7 +384,7 @@ export fn zregexp_replace(re: *ZRegex, input: [*:0]const u8, replacement: [*:0]c
     }
 
     // Build result string
-    var result = std.ArrayList(u8){};
+    var result: std.ArrayList(u8) = .empty;
     defer result.deinit(allocator);
 
     var last_end: usize = 0;
@@ -424,7 +424,7 @@ export fn zregexp_string_free(str: ?[*:0]u8) void {
     if (str) |s| {
         // Reconstruct the full buffer (len + 1 for null)
         const len = std.mem.len(s);
-        const buf: []u8 = @constCast(@as([*]u8, @ptrCast(s))[0..len+1]);
+        const buf: []u8 = @constCast(@as([*]u8, @ptrCast(s))[0 .. len + 1]);
         allocator.free(buf);
     }
 }
@@ -464,7 +464,7 @@ export fn zregexp_escape(input: [*:0]const u8) ?[*:0]u8 {
 
     const input_slice = cStringToSlice(input);
 
-    var result = std.ArrayList(u8){};
+    var result: std.ArrayList(u8) = .empty;
     defer result.deinit(allocator);
 
     // Characters that need escaping in regex

@@ -100,7 +100,7 @@ pub const Matcher = struct {
 
     /// Find all matches in input
     pub fn findAll(self: Self, input: []const u8) !std.ArrayListUnmanaged(MatchResult) {
-        var matches = std.ArrayListUnmanaged(MatchResult){};
+        var matches: std.ArrayListUnmanaged(MatchResult) = .empty;
         errdefer {
             for (matches.items) |match| {
                 match.deinit();

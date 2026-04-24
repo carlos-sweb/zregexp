@@ -551,10 +551,10 @@ pub const RecursiveMatcher = struct {
         var current_pos = pos;
 
         // PHASE 1: Greedy consumption - match as many as possible
-        var positions = std.ArrayList(usize){};
+        var positions: std.ArrayList(usize) = .empty;
         defer positions.deinit(self.allocator);
 
-        try positions.append(self.allocator, current_pos);  // Include zero matches
+        try positions.append(self.allocator, current_pos); // Include zero matches
 
         // Get the character instruction to match
         const char_inst = try format.decodeInstruction(self.bytecode, pc_char);

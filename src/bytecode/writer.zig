@@ -50,7 +50,7 @@ pub const BytecodeWriter = struct {
             .code = DynBuf(u8).init(allocator),
             .next_label_id = 0,
             .label_positions = .{},
-            .patches = .{},
+            .patches = .empty,
             .allocator = allocator,
         };
     }
