@@ -1,0 +1,15 @@
+.{
+    .name = .zregexp,
+    .version = "0.1.0",
+    .minimum_zig_version = "0.16.0",
+    .fingerprint = 0x9d42405ff2fcca92,
+    .description = "Modern Regular Expression Engine for Zig with C/C++ bindings - Fast, feature-rich, and memory-safe",
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src/",
+        "README.md",
+        "README.es.md",
+    },
+    .dependencies = .{},
+}
